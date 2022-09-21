@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pve-deployment
+  labels:
+    app: pve-deployment
+spec:
+  revisionHistoryLimit: 1 #limit revision history to one
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pve-pod
+  template:
+    metadata:
+      labels:
+        app: pve-pod
+    spec:
+      containers:
+        - name: exporter
+          image: prompve/prometheus-pve-exporter:v2.2.3
+          env:
+          - name: PVE_VERIFY_SSL # adjust to fit current setup
+            value : "false"
+          - name: PVE_USER
+            value : user@authmethod #change to fit dedicated user
+          - name: PVE_TOKEN_NAME # add own token name
+            value : "XXXXX"
+          - name: PVE_TOKEN_VALUE
+            valueFrom:
+              secretKeyRef: # provide secret named pve-api and place key here
+                name : pve-api
+                key: APIKEY
+          ports:
+            - containerPort: 9221
+              name: pve-export
+              protocol: TCP
+          resources:
+            limits:
+              memory: 64Mi
+              cpu:  250m
+            requests:
+              cpu: 100m
+              memory: 100m

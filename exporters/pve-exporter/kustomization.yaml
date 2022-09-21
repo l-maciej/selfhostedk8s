@@ -1,0 +1,7 @@
+resources :
+    - pve-exporter-deployment.yaml
+    - pve-exporter-svc.yaml
+    - pve-exporter-ingress.yaml
+
+generatorOptions:
+    disableNameSuffixHash: True

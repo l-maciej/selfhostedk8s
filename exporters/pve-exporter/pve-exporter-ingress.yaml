@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: pve-ingress
+spec:
+  rules:
+    - host: xxxxxx # add hostname on which expose metrics 
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name:  pve-svc
+                port:
+                  name: pve-outport
