@@ -10,5 +10,3 @@ configMapGenerator:
     - name: server-config
       files: 
         - server.yml
-
-namespace: test
