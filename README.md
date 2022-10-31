@@ -20,3 +20,7 @@ Prometheus exporters configured to work with external Prometheus instance
 
 ## smallapps
 Small but usefull apps for self-hosted lab enviroments
+
+
+##### [NTFY](https://github.com/binwiederhier/ntfy)
+Pub-sub notification application
