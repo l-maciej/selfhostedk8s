@@ -49,7 +49,6 @@ spec:
       volumes:
         - name: config-volume
           configMap:  # uses configmap genereator to parse server.yml to configmap
-            defaultMode: 620
             name: server-config
         - name: cache-volume
           persistentVolumeClaim: # stores /cache/ntfy in defined pv
